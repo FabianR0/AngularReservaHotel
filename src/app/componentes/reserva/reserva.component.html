@@ -1,0 +1,45 @@
+
+<app-menu ></app-menu>
+
+<div class="centro">
+  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" routerLink="/lista">
+    Mostrar lista de reserva
+      <!--{{!isLinear ? 'Habilitar modo lineal' : 'Deshabilitar modo lineal'}}-->
+    </button>
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Nombre de la reserva</ng-template>
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre_example" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Nombre de Usuario</ng-template>
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ernesto Perez"
+                  required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Confirmar</ng-template>
+        <p>Ya has terminado.</p>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button (click)="agregarElememto(reservations)">Validar</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+</div>  

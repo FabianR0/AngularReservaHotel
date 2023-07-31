@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+
+<mat-card>
+    <h2>Registro de Usuario</h2>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()">
+            <div>
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" [(ngModel)]="usuario.nombre" required>
+            </div>
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Telefono</mat-label>
+                  <input matInput placeholder="Ingrese el  #">
+                  <mat-icon matSuffix># telefonico</mat-icon>
+                </mat-form-field>
+              </p>
+              <div>
+                <label for="nombre">Tipo de Documento:</label>
+                <input type="text" id="nombre" name="nombre" [(ngModel)]="usuario.documento" required>
+              </div>
+            <div  class = "example-container" > 
+            <mat-form-field > 
+                <mat-label > Introduzca su correo electrónico </mat-label > 
+                <input  matInput  placeholder = "utepitos@utp.edu.co" [formControl]= "email"  requerido > 
+                <mat-error * ngIf = "email.invalid" > {{getErrorMessage()}} </mat-error > 
+            </mat-form-field > 
+            </div >
+            <div>
+              <label for="contrasena">Contraseña:</label>
+              <input type="password" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required>
+            </div>
+                <button mat-fab extended color="primary" type="submit"> 
+                    <mat-icon>done</mat-icon>
+                    Registrar
+                  </button>
+        </form>
+    </mat-card-content>  
+</mat-card>

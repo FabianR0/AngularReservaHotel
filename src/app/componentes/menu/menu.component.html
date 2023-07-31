@@ -1,0 +1,21 @@
+<button mat-fab extended color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
+    <mat-icon>more_vert</mat-icon>
+     Menu
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/login">
+    <mat-icon>dialpad</mat-icon>
+    <span>Login</span>
+    </button>
+    <button mat-menu-item routerLink="/User">
+    <mat-icon>person</mat-icon>
+    <span>Usuario</span>
+    </button>
+    <button mat-menu-item routerLink="/Reserva">
+    <mat-icon>notifications_off</mat-icon>
+    <span>Reserva</span>
+    </button>
+</mat-menu>
+
+<!---->
+  

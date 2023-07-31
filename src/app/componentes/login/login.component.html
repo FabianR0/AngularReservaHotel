@@ -1,0 +1,16 @@
+<mat-card class="card">
+<form class="example-form" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Ingrese su Usuario</mat-label>
+      <input matInput placeholder="Usuario=wili"  [(ngModel)]="username" name="username" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password=123"  [(ngModel)]="password" name="password" type="password" required>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button>Ingresar</button>
+    <button type="submit" mat-raised-button>Iniciar Seccion</button>
+  </form>
+</mat-card>  
