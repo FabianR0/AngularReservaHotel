@@ -23,7 +23,7 @@ export class LoginComponent {
     if (isValidLogin) {
       this.router.navigate(['/Menu']);
     } else {
-      console.log('Credenciales inválidas');
+      alert('Credenciales inválidas');
     }
   }
 }

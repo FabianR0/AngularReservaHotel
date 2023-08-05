@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthServiceService {
   private isLoggedInValue: boolean = false;
   private validUsers: any[] = [
-    { username: 'wili', password: '123' },
-    { username: 'upepe', password: '1357' },
+    { username: 'wili', password: '123' }
   ];
   isLoggedIn(): boolean {
     return this.isLoggedInValue;
@@ -34,5 +33,25 @@ export class AuthServiceService {
     );
     return !!user; 
   }
+  signUp(username: string, password: string): boolean {
+    // Implementa aquí la lógica para el proceso de registro
+    // Por ejemplo, podrías agregar el usuario a la lista de usuarios válidos
+    // y marcarlo como registrado.
+    // En este ejemplo, simplemente marcará al usuario como registrado automáticamente.
 
+    const userAlreadyExists = this.validUsers.some(
+      (user) => user.username === username
+    );
+
+    if (userAlreadyExists) {
+      // Si el usuario ya existe, no se puede registrar de nuevo.
+      return false;
+    }
+
+    // Agregar el nuevo usuario a la lista de usuarios válidos
+    this.validUsers.push({ username, password });
+    // Marcarlo como registrado automáticamente al momento de registrarse.
+    this.onLoginSuccess();
+    return true;
+  }
 }
