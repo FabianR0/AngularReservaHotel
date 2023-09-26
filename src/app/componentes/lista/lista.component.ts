@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServiceReservaService } from 'src/app/servicesReserva/serReserva.service';
 
 export interface PeriodicElement {
@@ -17,8 +18,8 @@ export interface PeriodicElement {
 
 export class ListaComponent implements OnInit{
 
-  constructor(private reservaService: ServiceReservaService) {}
-  //@Input() dataSource: any[] = [];
+  constructor(private reservaService: ServiceReservaService,private router: Router) {}
+  
   displayedColumns: string[] = ['position', 'name', 'nameReserva','actions'];
   dataSource :any[] = [];
 
@@ -26,15 +27,9 @@ export class ListaComponent implements OnInit{
     this.dataSource = this.reservaService.getReservations();
   }
 
-  agregarElemento() {
-    const newPosition = this.dataSource.length + 1;
-    const newElement: PeriodicElement = {
-      position: newPosition,
-      name: 'Nuevo Elemento',
-      nameReserva: 'nuevo',
-      actions: null
-    };
-    this.dataSource.push(newElement);
+  agregarElemento(): void {
+    const urlExterna = 'Reserva'; 
+    window.location.href = urlExterna;
   }
 
   eliminarElemento(index: number) {

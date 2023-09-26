@@ -2,7 +2,7 @@
 <app-menu ></app-menu>
 
 <div class="centro">
-  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" routerLink="/lista">
+  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" routerLink="/lista" >
     Mostrar lista de reserva
       <!--{{!isLinear ? 'Habilitar modo lineal' : 'Deshabilitar modo lineal'}}-->
     </button>
@@ -38,7 +38,7 @@
         <p>Ya has terminado.</p>
         <div>
           <button mat-button matStepperPrevious>Atras</button>
-          <button mat-button (click)="agregarElememto(reservations)">Validar</button>
+          <button mat-button (click)="guardarReserva()">Validar</button>
         </div>
       </mat-step>
     </mat-stepper>

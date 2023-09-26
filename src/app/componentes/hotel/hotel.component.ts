@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Hotel } from 'src/models/Hotel';
 import { ServiceHotelService } from 'src/app/servicesHotel/serhotel.service';
+import {MatButtonModule} from '@angular/material/button';
+import {NgIf} from '@angular/common';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-hotel',
@@ -8,9 +13,16 @@ import { ServiceHotelService } from 'src/app/servicesHotel/serhotel.service';
   styleUrls: ['./hotel.component.css']
 })
 export class HotelComponent {
+
   hotel: Hotel | undefined;
   hoteles: Hotel[]=[];
-  constructor(private servicesHotelService  : ServiceHotelService) {}
+  constructor(private servicesHotelService  : ServiceHotelService) {
+    this.firstNameAutofilled = true;
+    this.lastNameAutofilled = true;
+  }
+
+  firstNameAutofilled: boolean;
+  lastNameAutofilled: boolean;
 
   crearHotel(){
     if (this.hotel) { 

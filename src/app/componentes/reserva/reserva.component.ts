@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-
 import {FormBuilder, Validators} from '@angular/forms';
-
 import { HttpClient } from '@angular/common/http';
-
 import { MatStepper } from '@angular/material/stepper';
 import { ServiceReservaService } from 'src/app/servicesReserva/serReserva.service';
 
@@ -29,48 +26,21 @@ export class ReservaComponent {
   });
   isLinear = false;
 
-  agregarElememto(reservationData: any){
-    this.reservaService.addReservation(this.reservaService)
+  agregarElemento() {
+    this.stepper.reset();
   }
 
-  reset() {
-    // Restablecer el primer formulario
-    this.firstFormGroup.reset();
-    this.firstFormGroup.markAsPristine();
-    this.firstFormGroup.markAsUntouched();
-
-    // Restablecer el segundo formulario
-    this.secondFormGroup.reset();
-    this.secondFormGroup.markAsPristine();
-    this.secondFormGroup.markAsUntouched();
-
-    this.stepper.reset();
-
+  guardarReserva() {
     const reservationData = {
       position: this.reservations.length + 1,
-      name: this.firstFormGroup.value.firstCtrl
+      name: this.firstFormGroup.value.firstCtrl,
+      nameReserva: this.secondFormGroup.value.secondCtrl,
     };
 
     this.reservations.push(reservationData);
     this.reservaService.addReservation(reservationData);
-  }
-  
 
-  /*private url = 'http://localhost:8080/reservas';
-  crearReserva(reserva: Reserva) {
-    return this.http.post<Reserva>(this.url, reserva);
+    this.stepper.reset();
   }
-
-  actualizarReserva(id: number, reserva: Reserva) {
-    return this.http.put<Reserva>(`${this.url}/${id}`, reserva);
-  }
-
-  obtenerReserva(id: number) {
-    return this.http.get<Reserva>(`${this.url}/${id}`);
-  }
-
-  eliminarReserva(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
-  }*/
 
 }
