@@ -40,15 +40,25 @@ h2 {
   button:hover {
     background-color: #0056b3;
   }
+  .lado{
+    display: flex;
+    justify-content: space-evenly;
+  }
   mat-card{
     max-width: 400px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 20px;
   }
   mat-form-field{
     width: 290px;
     margin: 10 800;
   }
+  .space{
+    margin-right: 10px;
+  }
   .example-container mat-form-field + mat-form-field {
     margin-left: 8px;
+  }
+  .mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
   }

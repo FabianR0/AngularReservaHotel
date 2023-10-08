@@ -1,7 +1,6 @@
 <app-menu ></app-menu>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
@@ -30,5 +29,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
-  <!--  -->
   <button mat-raised-button color="primary" (click)="agregarElemento()">Agregar Elemento</button>  
+  <!-- IDEA : poner uno igualito pero que se vea el registro de USUARIO y HOTEL --> 

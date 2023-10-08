@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Usuario } from 'src/models/Usuario';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Users} from 'src/app/models/users'
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -9,21 +7,40 @@ import {FormControl, Validators} from '@angular/forms';
   templateUrl: './usuario.component.html',
   styleUrls: ['./usuario.component.css']
 })
+  
 export class UsuarioComponent {
 
-  usuario: Usuario;
-  usuarioId: any[]=[];
-  
+  usuarioId: Users[]=[
+    {id:1,nombre:"Fabian", telefono:12345,documento:54321,email:"utp@gmail.com",contrasena:"angular"},
+    {id:2,nombre:"Fabian2",telefono:123456,documento:543217,email:"utp2@gmail.com",contrasena:"angularr"},
+    {id:3,nombre:"Fabian3", telefono:123457,documento:543218,email:"utp3@gmail.com",contrasena:"angulare"}
+  ];
+
+  insertUser: Users = new Users();
+
+  addOrEdit(){
+    if(this.insertUser.id === 0){
+      this.insertUser.id = this.usuarioId.length + 1;
+      this.usuarioId.push(this.insertUser);
+    }
+    this.insertUser = new Users();
+  }
+
+  openEdit(recibeUser :Users){
+    this.insertUser = recibeUser;
+  }
+
+  delete(){
+    if (confirm('esta seguro de eliminar?')) {
+      this.usuarioId = this.usuarioId.filter(x => x != this.insertUser);
+      this.insertUser = new Users();
+    }
+    
+  }
+
 private baseUrl = 'http://localhost:8080/api/usuarios';
 
-  onSubmit() {
-    // Aquí puedes agregar la lógica para enviar los datos del usuario a un servicio o realizar otras acciones necesarias.
-    console.log('Datos del usuario:', this.usuario);
-    // Por ejemplo, puedes enviar los datos a un servicio para guardarlos en el servidor.
-  }
- constructor(private http: HttpClient){
-  this.usuario = {contrasena:'',email:'', nombre: '', telefono: '', documento: ''};
- }
+
   ngOnInit(): void {
     
   }
@@ -39,19 +56,19 @@ private baseUrl = 'http://localhost:8080/api/usuarios';
   }
 
 //aqui es el crud
-  public createUser(user: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, user);
-  }
+  // public createUser(user: Usuario): Observable<Usuario> {
+  //   return this.http.post<Usuario>(this.baseUrl, user);
+  // }
 
-  public getAllUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl);
-  }
+  // public getAllUsers(): Observable<Usuario[]> {
+  //   return this.http.get<Usuario[]>(this.baseUrl);
+  // }
 
-  public updateUser(id: number, user: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.baseUrl}/${id}`, user);
-  }
+  // public updateUser(id: number, user: Usuario): Observable<Usuario> {
+  //   return this.http.put<Usuario>(`${this.baseUrl}/${id}`, user);
+  // }
 
-  public deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
+  // public deleteUser(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  // }
 }

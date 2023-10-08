@@ -1,5 +1,3 @@
-import { Usuario } from "./Usuario";
-
 export interface Reserva{
     nombre:any;
     nomUsuario:any;

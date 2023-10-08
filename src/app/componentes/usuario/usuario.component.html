@@ -1,39 +1,51 @@
 <app-menu></app-menu>
-
+<div class="lado">
 <mat-card>
     <h2>Registro de Usuario</h2>
     <mat-card-content>
-        <form (ngSubmit)="onSubmit()">
+        <form>
             <div>
               <label for="nombre">Nombre:</label>
-              <input type="text" id="nombre" name="nombre" [(ngModel)]="usuario.nombre" required>
+              <input type="text" id="nombre" name="nombre"  [(ngModel)]="insertUser.nombre" required>
             </div>
-              <p>
-                <mat-form-field appearance="outline">
-                  <mat-label>Telefono</mat-label>
-                  <input matInput placeholder="Ingrese el  #">
-                  <mat-icon matSuffix># telefonico</mat-icon>
-                </mat-form-field>
-              </p>
-              <div>
-                <label for="nombre">Tipo de Documento:</label>
-                <input type="text" id="nombre" name="nombre" [(ngModel)]="usuario.documento" required>
-              </div>
+            <div>
+              <label for="nombre">Telefono</label>
+              <input type="number" id="Number" name="Number" [(ngModel)]="insertUser.telefono" required>
+            </div>  
+            <div>
+              <label for="nombre">Tipo de Documento:</label>
+              <input type="number" id="Doc" name="Doc" [(ngModel)]="insertUser.documento" required>
+            </div>
             <div  class = "example-container" > 
             <mat-form-field > 
                 <mat-label > Introduzca su correo electrónico </mat-label > 
-                <input  matInput  placeholder = "utepitos@utp.edu.co" [formControl]= "email"  requerido > 
+                <input  matInput [(ngModel)]="insertUser.email" placeholder = "utepitos@utp.edu.co" [formControl]= "email"  requerido > 
                 <mat-error * ngIf = "email.invalid" > {{getErrorMessage()}} </mat-error > 
             </mat-form-field > 
             </div >
             <div>
               <label for="contrasena">Contraseña:</label>
-              <input type="password" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required>
+              <input type="password" id="contrasena" name="contrasena" [(ngModel)]="insertUser.contrasena" required>
             </div>
-                <button mat-fab extended color="primary" type="submit"> 
+                <button mat-fab extended color="primary" type="submit" (click)="addOrEdit()"> 
                     <mat-icon>done</mat-icon>
                     Registrar
                   </button>
+                  <br>
+                  <br>
+                  <button  mat-fab extended color="primary" type="submit" *ngIf="insertUser.id !== 0" (click)="delete()">Delete</button>
         </form>
     </mat-card-content>  
 </mat-card>
+<mat-card>
+  <mat-card-header><h2>Listado de Usuario</h2></mat-card-header>
+ <mat-list>
+  <mat-list-item *ngFor="let Users of usuarioId" (click)="openEdit(Users)">
+    <mat-card-actions mat-raised-button><mat-icon class="space">notes</mat-icon>
+    <div matListItemLine>{{Users.id}} - {{Users.nombre}} - {{Users.telefono}} - {{Users.documento}} - {{Users.email}} - {{Users.contrasena}}</div><br></mat-card-actions>
+  </mat-list-item>
+</mat-list>
+</mat-card>
+</div>
+
+

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Hotel } from 'src/models/Hotel';
+import { Hotel } from 'src/interface/Hotel';
 import { ServiceHotelService } from 'src/app/servicesHotel/serhotel.service';
 import {MatButtonModule} from '@angular/material/button';
 import {NgIf} from '@angular/common';
